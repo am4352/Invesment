@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SentimentChecker.css"; // Assuming you're using external CSS
 
 function SentimentChecker() {
   const [stock, setStock] = useState("");
@@ -19,7 +20,7 @@ function SentimentChecker() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json(); // This can throw an error if response is empty
+      const data = await response.json();
       if (data.sentiment) {
         setSentiment(data.sentiment);
         setError("");
@@ -33,16 +34,22 @@ function SentimentChecker() {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={stock}
-        onChange={(e) => setStock(e.target.value)}
-        placeholder="Enter stock symbol"
-      />
-      <button onClick={checkSentiment}>Check Sentiment</button>
-      {sentiment && <p>Sentiment: {sentiment}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="sentiment-container">
+      <h1>Check Stock Sentiment</h1>
+      <div className="input-group">
+        <input
+          type="text"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+          placeholder="Enter stock symbol"
+          className="input-field"
+        />
+        <button onClick={checkSentiment} className="check-button">
+          Check Sentiment
+        </button>
+      </div>
+      {sentiment && <p className="sentiment-result">Sentiment: {sentiment}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }

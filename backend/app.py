@@ -3,14 +3,12 @@ from flask_cors import CORS
 from groq import Groq
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Use your frontend port here (3000 or 5173)
 
-# Enable CORS and allow requests from your frontend
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
-
-# Groq API setup as before
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "1070944db1bd4941a62a2f17eeae3c0d"
 client = Groq(api_key=GROQ_API_KEY)
 
+# Groq API function to generate response
 def get_llm_response(prompt):
     chat_completion = client.chat.completions.create(
         messages=[
@@ -23,27 +21,20 @@ def get_llm_response(prompt):
     )
     return chat_completion.choices[0].message.content
 
-@app.route('/sentiment', methods=['POST'])
-def get_sentiment():
-    stock = request.json.get('stock')
-    if not stock:
-        return jsonify({"error": "Stock symbol is required"}), 400
-    
-    sentiment_prompt = f"Analyze the sentiment for the stock {stock}."
-    
-    try:
-        sentiment = get_llm_response(sentiment_prompt)
-        return jsonify(sentiment=sentiment)
-    except Exception as e:
-        return jsonify({"error": "Error processing the sentiment request", "details": str(e)}), 500
-
-
+# Endpoint for stock recommendations
 @app.route('/recommendations', methods=['POST'])
 def get_recommendations():
     theme = request.json.get('theme')
+    if not theme:
+        return jsonify({"error": "Theme is required"}), 400
+
     recommendation_prompt = f"Recommend top stocks for the {theme} sector in the Indian market."
-    recommendation = get_llm_response(recommendation_prompt)
-    return jsonify(recommendation=recommendation)
+    
+    try:
+        recommendation = get_llm_response(recommendation_prompt)
+        return jsonify({"recommendation": recommendation})
+    except Exception as e:
+        return jsonify({"error": "Error processing the recommendation request", "details": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

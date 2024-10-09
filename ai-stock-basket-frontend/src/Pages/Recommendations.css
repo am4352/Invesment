@@ -1,0 +1,123 @@
+/* Container for the recommendations form and list */
+.recommendations-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #ffffff;
+    color: #333333;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Main heading styling */
+h1 {
+    color: #222222;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Input container box */
+.input-box {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+/* Styling for the input fields */
+input {
+    padding: 15px;
+    font-size: 1.1rem; /* Increased font size */
+    width: 100%;
+    border: 2px solid #007bff; /* Change border color to match button */
+    border-radius: 5px;
+    outline: none;
+    color: #333333;
+}
+
+/* Placeholder text styling */
+input::placeholder {
+    color: #666666;
+}
+
+/* Button styling */
+button {
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Disabled button styling */
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Hover effect for the button */
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Stock list styling, flexbox to handle layout */
+.stocks-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Individual stock card styling */
+.stock-card {
+    background-color: #f1f1f1;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* Stock card hover effect */
+.stock-card:hover {
+    transform: translateY(-5px); /* Adds a slight hover effect */
+}
+
+/* Stock card heading styling */
+h2 {
+    margin: 0 0 15px;
+    font-size: 1.8rem;
+    color: #333333;
+}
+
+/* Stock card paragraph styling */
+p {
+    font-size: 1.1rem;
+    color: #555555;
+}
+
+/* Responsive design for mobile screens */
+@media (max-width: 768px) {
+    .stocks-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stock-card {
+        width: 90%;
+    }
+
+    input,
+    button {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+}
