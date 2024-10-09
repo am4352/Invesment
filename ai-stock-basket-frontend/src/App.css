@@ -1,42 +1,90 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.navbar {
+  background-color: #333;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1.3rem 0;
+  /* Increase padding for more height */
+  height: auto;
+  /* Ensure it adapts to the content */
+}
+
+.navbar-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-links li {
+  margin: 0 9rem;
+}
+
+.navbar-links li a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.navbar-links li a:hover {
+  background-color: #575757;
+}
+
+/* Container or Page Background */
+.page-background {
+  background-image: url('./assets/background-image.png'); /* Path to your image */
+  background-size: cover; /* Ensures the background covers the entire area */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Text color over the background */
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Styling for large text */
+.hero-text {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Subtext */
+.sub-text {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Button styles */
+.hero-button {
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 1rem;
 }
 
-.card {
-  padding: 2em;
+.hero-button:hover {
+  background-color: #8b00ff;
 }
 
-.read-the-docs {
-  color: #888;
+.hero-button.secondary {
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.hero-button.secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
